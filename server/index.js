@@ -30,13 +30,17 @@ app.set("db", db);
 app.use(express.json());
 
 app.post("/sign-up", uc.add);
-app.patch("/patch", uc.patch);
-
+app.patch("/patch/:id", uc.patch);
+app.post("/posts", uc.post);
+app.post("/comments", uc.comment);
+app.get("/profile", uc.fetch);
+app.get("/user/:userId/posts", uc.allpost);
+app.get("/posts/:postId", uc.viewpost);
 app.get("/debug", (req, res) => {
   res.status(200).json(req.app.get("db"));
 });
 
 const PORT = 3001;
 app.listen(PORT, () => {
-  console.log(`Server listening to ${PORT}`);
+  console.log(`Server listening (ô_ô) to ${PORT}`);
 });
